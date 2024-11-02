@@ -23,6 +23,7 @@ public class GridManager : MonoBehaviour
     private int clicksPerCycle;
     private int cycle;
 
+
     private bool targetsIdentified = false;
 
     private void Awake()
@@ -36,7 +37,10 @@ public class GridManager : MonoBehaviour
 
         allEnemies = new EnemyController[numberOfEnemies];
 
+
         clicksPerCycle = numberOfEnemies;
+
+
     }
 
     private void Start()
