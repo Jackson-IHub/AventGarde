@@ -18,7 +18,9 @@ public class GridManager : MonoBehaviour
 
     private EnemyController[] allEnemies;
 
-    private int click;
+    public int click;
+
+    private int clicksPerCycle;
     private int cycle;
 
     private bool targetsIdentified = false;
@@ -33,6 +35,8 @@ public class GridManager : MonoBehaviour
         }
 
         allEnemies = new EnemyController[numberOfEnemies];
+
+        clicksPerCycle = numberOfEnemies;
     }
 
     private void Start()
@@ -42,6 +46,8 @@ public class GridManager : MonoBehaviour
 
     public void ResetCellColor()
     {
+        
+
         for (int i = 0; i < allCells.Length; i++)
         {
             if(i % 2 == 0)
@@ -52,7 +58,10 @@ public class GridManager : MonoBehaviour
             {
                 allCells[i].GetComponent<SpriteRenderer>().color = Color.white;
             }
+
+            allCells[i].GetComponent<CellManager>().isTargeted = false;
         }
+        
     }
 
     private void InitializeEnemies()
@@ -83,6 +92,15 @@ public class GridManager : MonoBehaviour
         }
 
         
+    }
+
+    public void RemoveEnemy(GameObject gameObject)
+    {
+        for (int i = 0; i < allEnemies.Count(); i++){
+            if (allEnemies[i] == gameObject){
+                allEnemies[i] = null;
+            }
+        }
     }
 
     private void OnCycleStart()
@@ -122,9 +140,29 @@ public class GridManager : MonoBehaviour
             OnCycleStart();
         }
 
+        //ResetCellColor();
+
     }
 
+    public void ClickUpdate(){
+        
+        click = click+1;
 
+        if (click == clicksPerCycle)
+        {
+            CycleUpdate();
+            click = 0;
+        }
+
+    }
+
+    //public void ResetTargeting()
+
+    public void CycleUpdate()
+    {
+        cycle++;
+        ResetCellColor();
+    }
 
 
 

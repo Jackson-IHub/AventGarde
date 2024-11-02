@@ -84,12 +84,15 @@ public class EnemyController : MonoBehaviour
         currentCell.GetComponent<CellManager>().isOccupied = false;
         currentCell.GetComponent<CellManager>().isTargeted = false;
 
+
         currentPosition = targetPosition;
         currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
         this.transform.SetParent(currentCell.transform, true);
         this.transform.localPosition = Vector2.zero;
+
         possiblePositions.Clear();
         currentCell.GetComponent<CellManager>().ResetColor();
+        currentCell.GetComponent<CellManager>().ResetStatus();
         currentCell.GetComponent<CellManager>().isOccupied = true;
     }
 
