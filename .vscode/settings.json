@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Avent Garde.sln"
+    "dotnet.defaultSolution": "AventGarde.sln"
 }
