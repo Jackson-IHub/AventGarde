@@ -219,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &147545930
 GameObject:
@@ -322,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &171084304
 GameObject:
@@ -548,8 +548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &312745303
 GameObject:
@@ -651,8 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &349057637
 GameObject:
@@ -754,8 +754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &441342413
 GameObject:
@@ -857,8 +857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &444895368
 GameObject:
@@ -960,8 +960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &448883469
 GameObject:
@@ -1063,8 +1063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &485848249
 GameObject:
@@ -1166,8 +1166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &519420028
 GameObject:
@@ -1562,8 +1562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &901979007
 GameObject:
@@ -1665,8 +1665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &960138192
 GameObject:
@@ -1768,8 +1768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &979865962
 GameObject:
@@ -1871,8 +1871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1011287723
 GameObject:
@@ -2077,8 +2077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1136534217
 GameObject:
@@ -2180,8 +2180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1140742575
 GameObject:
@@ -2283,8 +2283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1191738811
 GameObject:
@@ -2386,8 +2386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1359624197
 GameObject:
@@ -2592,8 +2592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1432375784
 GameObject:
@@ -2695,8 +2695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1565388283
 GameObject:
@@ -2834,8 +2834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1609804365
 GameObject:
@@ -2937,8 +2937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1738323689
 GameObject:
@@ -3076,8 +3076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1898851696
 GameObject:
@@ -3179,8 +3179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1928481677
 GameObject:
@@ -3369,8 +3369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434086da2a2d0b749ae5a70c9337f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 1
-  isTargeted: 1
+  isOccupied: 0
+  isTargeted: 0
   startingColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
