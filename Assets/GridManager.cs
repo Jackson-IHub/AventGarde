@@ -56,40 +56,40 @@ public class GridManager : MonoBehaviour
     private void InitializeEnemies()
     {
 
+        
+
+        //List<Vector2> possibleSpawns = new List<Vector2>();
+
+        //while (i < grid.Length)
+        //{
+        //    for (int k = 0; k < 5; k++)
+        //    {
+        //        if (grid[i, k].GetComponent<CellManager>().isOccupied || grid[i, k].GetComponent<CellManager>().isTargeted)
+        //        {
+        //            // no nothing is supposed to happen here
+        //        }
+        //        else
+        //        {
+        //            possibleSpawns.Add(new Vector2(i, k));
+        //        }
+                
+        //    }
+        //    i = 0;
+
+        //}
+
+
         int i = 0;
 
-        List<Vector2> possibleSpawns = new List<Vector2>();
-
-        while (i < grid.Length)
-        {
-            for (int k = 0; k < 5; k++)
-            {
-                if (grid[i, k].GetComponent<CellManager>().isOccupied || grid[i, k].GetComponent<CellManager>().isTargeted)
-                {
-                    // no nothing is supposed to happen here
-                }
-                else
-                {
-                    possibleSpawns.Add(new Vector2(i, k));
-                }
-                
-            }
-            i = 0;
-
-        }
-
-        
-
-        
         while (i < numberOfEnemies) 
         {
             
             Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
 
-            int randomNumber = Random.Range(0, (int)possibleSpawns.Count());
-            Vector2 startingSpawn = possibleSpawns[randomNumber];
+            //int randomNumber = Random.Range(0, (int)possibleSpawns.Count());
+            //Vector2 startingSpawn = possibleSpawns[randomNumber];
 
-            if((grid[(int)startingSpawn.x, (int)startingSpawn.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
+            if((grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
             {
                 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
                 
@@ -99,7 +99,7 @@ public class GridManager : MonoBehaviour
                 GameObject enemy = Instantiate(simpleEnemy);
                 EnemyController controller = enemy.GetComponent<EnemyController>();
                 controller.gridManager = this.gameObject.GetComponent<GridManager>();
-                controller.startingSquare = startingSpawn;
+                controller.startingSquare = spawnLocation;
                 controller.Spawn();
                 allEnemies[i] = controller;
                 i++;
