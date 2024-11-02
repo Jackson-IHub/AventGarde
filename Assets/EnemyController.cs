@@ -81,27 +81,50 @@ public class EnemyController : MonoBehaviour
 
         for (int i = 0; i < possiblePositions.Count; i++)
         {
-            if (gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().isOccupied == true)
+            if (gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().isOccupied == true || gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().isTargeted == true)
             {
-               possiblePositions.Remove(possiblePositions[i]);
+                possiblePositions.Remove(possiblePositions[i]);
             }
+        }
+
+        if(possiblePositions.Count == 0)
+        {
+            Debug.Log("locked in");
+            return;
         }
 
         randomDir = Random.Range(0, possiblePositions.Count);
 
-        gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+        gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].y].GetComponent <CellManager>().isTargeted = true;
+        gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].y].GetComponent<SpriteRenderer>().color = Color.green;
 
         //StartCoroutine(WaitForMove());
     }
 
+    private void IsTargetValid()
+    {
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("DESTORY");
+        Destroy(this.gameObject);
+    }
+
     public void MovePosition()
     {
+        currentCell.GetComponent<CellManager>().isOccupied = false;
+        currentCell.GetComponent<CellManager>().isTargeted = false;
+
         currentPosition = possiblePositions[randomDir];
+        currentCell.GetComponent<CellManager>().isTargeted = false;
         currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
         this.transform.SetParent(currentCell.transform, true);
         this.transform.localPosition = Vector2.zero;
         possiblePositions.Clear();
         currentCell.GetComponent<CellManager>().ResetColor();
+        currentCell.GetComponent<CellManager>().isOccupied = true;
 
 
         CheckLegalPositions();

@@ -4,7 +4,9 @@ public class CellManager : MonoBehaviour
 {
     public bool isOccupied = false; //is there a character or blocker?
 
-    public Color color;
+    public bool isTargeted = false;
+
+    public Color startingColor;
 
     private SpriteRenderer spriteRenderer;
 
@@ -15,7 +17,7 @@ public class CellManager : MonoBehaviour
 
     public void ResetColor()
     {
-        spriteRenderer.color = color;
+        spriteRenderer.color = startingColor;
     }
 
 

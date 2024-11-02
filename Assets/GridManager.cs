@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -52,26 +55,58 @@ public class GridManager : MonoBehaviour
 
     private void InitializeEnemies()
     {
-        for (int i = 0; i < numberOfEnemies; i++) 
+
+        int i = 0;
+
+        List<Vector2> possibleSpawns = new List<Vector2>();
+
+        while (i < grid.Length)
         {
-            Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
-
-            if(grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied == true)
+            for (int k = 0; k < 5; k++)
             {
-                i--;
-                return;
+                if (grid[i, k].GetComponent<CellManager>().isOccupied || grid[i, k].GetComponent<CellManager>().isTargeted)
+                {
+                    // no nothing is supposed to happen here
+                }
+                else
+                {
+                    possibleSpawns.Add(new Vector2(i, k));
+                }
+                
             }
+            i = 0;
 
-            
-            GameObject enemy = Instantiate(simpleEnemy);
-            EnemyController controller = enemy.GetComponent<EnemyController>();
-            controller.gridManager = this.gameObject.GetComponent<GridManager>();
-            controller.startingSquare = spawnLocation;
-            controller.Spawn();
-            allEnemies[i] = controller;
         }
 
-        OnCycleStart();
+        
+
+        
+        while (i < numberOfEnemies) 
+        {
+            
+            Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
+
+            int randomNumber = Random.Range(0, (int)possibleSpawns.Count());
+            Vector2 startingSpawn = possibleSpawns[randomNumber];
+
+            if((grid[(int)startingSpawn.x, (int)startingSpawn.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
+            {
+                spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
+                
+            }
+            else
+            {
+                GameObject enemy = Instantiate(simpleEnemy);
+                EnemyController controller = enemy.GetComponent<EnemyController>();
+                controller.gridManager = this.gameObject.GetComponent<GridManager>();
+                controller.startingSquare = startingSpawn;
+                controller.Spawn();
+                allEnemies[i] = controller;
+                i++;
+            }
+        }
+
+        
     }
 
     private void OnCycleStart()
@@ -86,9 +121,17 @@ public class GridManager : MonoBehaviour
             allEnemies[i].MovePosition();
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         //ResetCellColor();
-        OnCycleStart();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnCycleStart();
+        }
+
     }
 
 
