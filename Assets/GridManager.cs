@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -7,15 +8,34 @@ public class GridManager : MonoBehaviour
     public Vector2[] possiblePositions;
     public GameObject[] allCells;
 
+    public GameObject simpleEnemy;
+
+    public int numberOfEnemies;
+    private GameObject enemy;
+
+    private EnemyController[] allEnemies;
+
+    private int click;
+    private int cycle;
+
+    public playerController2 player2;
+
     private void Awake()
     {
         int i = 0;
         foreach (var cell in allCells)
         {
-
             grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y] = allCells[i];
             i++;
         }
+
+        allEnemies = new EnemyController[numberOfEnemies];
+        player2.enabled = true;
+    }
+
+    private void Start()
+    {
+        InitializeEnemies();
     }
 
     public void ResetCellColor()
@@ -33,21 +53,50 @@ public class GridManager : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void InitializeEnemies()
     {
-        
+        for (int i = 0; i < numberOfEnemies; i++) 
+        {
+            Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
+
+            if(grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied == true)
+            {
+                i--;
+                return;
+            }
+
+            
+            GameObject enemy = Instantiate(simpleEnemy);
+            EnemyController controller = enemy.GetComponent<EnemyController>();
+            controller.gridManager = this.gameObject.GetComponent<GridManager>();
+            controller.startingSquare = spawnLocation;
+            controller.Spawn();
+            allEnemies[i] = controller;
+        }
+
+        OnCycleStart();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCycleStart()
     {
-        
+        StartCoroutine(EnemyActions());
     }
+    private IEnumerator EnemyActions()
+    {
+        for(int i = 0; i < allEnemies.Length; i++)
+        {
+            yield return new WaitForSeconds(0.25f);
+            allEnemies[i].MovePosition();
+        }
+
+        yield return new WaitForSeconds(1f);
+        //ResetCellColor();
+        OnCycleStart();
+    }
+
+
+
+
+
+
 }
