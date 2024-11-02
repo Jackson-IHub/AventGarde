@@ -1956,7 +1956,7 @@ MonoBehaviour:
   - {fileID: 1191738811}
   - {fileID: 960138192}
   simpleEnemy: {fileID: 6660624157749960730, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
-  numberOfEnemies: 3
+  numberOfEnemies: 1
 --- !u!4 &1011287725
 Transform:
   m_ObjectHideFlags: 0

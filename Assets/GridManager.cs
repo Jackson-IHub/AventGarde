@@ -21,6 +21,8 @@ public class GridManager : MonoBehaviour
     private int click;
     private int cycle;
 
+    private bool targetsIdentified = false;
+
     private void Awake()
     {
         int i = 0;
@@ -56,38 +58,12 @@ public class GridManager : MonoBehaviour
     private void InitializeEnemies()
     {
 
-        
-
-        //List<Vector2> possibleSpawns = new List<Vector2>();
-
-        //while (i < grid.Length)
-        //{
-        //    for (int k = 0; k < 5; k++)
-        //    {
-        //        if (grid[i, k].GetComponent<CellManager>().isOccupied || grid[i, k].GetComponent<CellManager>().isTargeted)
-        //        {
-        //            // no nothing is supposed to happen here
-        //        }
-        //        else
-        //        {
-        //            possibleSpawns.Add(new Vector2(i, k));
-        //        }
-                
-        //    }
-        //    i = 0;
-
-        //}
-
-
         int i = 0;
 
         while (i < numberOfEnemies) 
         {
             
             Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
-
-            //int randomNumber = Random.Range(0, (int)possibleSpawns.Count());
-            //Vector2 startingSpawn = possibleSpawns[randomNumber];
 
             if((grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
             {
@@ -115,13 +91,27 @@ public class GridManager : MonoBehaviour
     }
     private IEnumerator EnemyActions()
     {
-        for(int i = 0; i < allEnemies.Length; i++)
+        if(!targetsIdentified)
         {
-            yield return new WaitForSeconds(0.25f);
-            allEnemies[i].MovePosition();
+            for (int i = 0; i < allEnemies.Length; i++)
+            {
+                yield return new WaitForSeconds(0.25f);
+                allEnemies[i].EstablishTarget();
+            }
+            
+        }
+        else
+        {
+            for (int i = 0; i < allEnemies.Length; i++)
+            {
+                yield return new WaitForSeconds(0.25f);
+                allEnemies[i].MovePosition();
+            }
         }
 
-        yield return new WaitForSeconds(3f);
+        targetsIdentified = !targetsIdentified;
+
+
         //ResetCellColor();
     }
 
