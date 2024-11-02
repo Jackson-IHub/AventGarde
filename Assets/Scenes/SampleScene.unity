@@ -396,6 +396,7 @@ MonoBehaviour:
   player: {fileID: 171084304}
   playerPosition: {x: 4, y: 0}
   gridManager: {fileID: 1011287724}
+  currentCell: {fileID: 0}
   movementLock: 0
 --- !u!1 &191206568
 GameObject:
@@ -2916,6 +2917,7 @@ MonoBehaviour:
   player: {fileID: 1928481677}
   playerPosition: {x: 0, y: 4}
   gridManager: {fileID: 1011287724}
+  currentCell: {fileID: 0}
   movementLock: 0
 --- !u!1 &2018881752
 GameObject:
