@@ -18,6 +18,8 @@ public class GridManager : MonoBehaviour
     private int click;
     private int cycle;
 
+    public playerController2 player2;
+
     private void Awake()
     {
         int i = 0;
@@ -28,6 +30,7 @@ public class GridManager : MonoBehaviour
         }
 
         allEnemies = new EnemyController[numberOfEnemies];
+        player2.enabled = true;
     }
 
     private void Start()

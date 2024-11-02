@@ -2,9 +2,8 @@ using JetBrains.Annotations;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Collections;
 
-public class playerController : MonoBehaviour
+public class playerController2 : MonoBehaviour
 {
         public GameObject player;
         public Vector2 playerPosition;
@@ -17,8 +16,6 @@ public class playerController : MonoBehaviour
 
         public List<Vector2> possiblePositions;
         private SpriteRenderer spriteRenderer;
-
-        public List<Vector2> pastPositions;
 
         //clear possible postitions do for loop for the resetting
 
@@ -55,11 +52,6 @@ public class playerController : MonoBehaviour
     {
         PlayerMove();
         //ValidMoves();
-
-        if (Input.GetKeyUp(KeyCode.LeftShift)){
-            //Rewind();
-        }
-
     }
 
     void PlayerMove(){
@@ -100,7 +92,6 @@ public class playerController : MonoBehaviour
             }
         //}
         if (player.CompareTag("Player2") && !movementLock){
-            //currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y];
             if (Input.GetKeyUp(KeyCode.UpArrow)){
                 ClearPositions();
                 currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y+1];
@@ -136,13 +127,7 @@ public class playerController : MonoBehaviour
         
     }
 
-    void RecordPositions(Vector2 laspos){
-        pastPositions.Add(laspos);
-    }
 
-    void RewindPositions(){
-        playerPosition = pastPositions[^1];
-    }
     private void CheckLegalPositions()
     {
 
@@ -156,7 +141,7 @@ public class playerController : MonoBehaviour
         {
             possiblePositions.Add(playerPosition + Vector2.up);
         
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+              gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
             
         }
         if (playerPosition.x + 1 <= 4) // can we go right?
