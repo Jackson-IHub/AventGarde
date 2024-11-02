@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -15,10 +18,13 @@ public class GridManager : MonoBehaviour
 
     private EnemyController[] allEnemies;
 
-    private int click;
+    public int click;
+
+    private int clicksPerCycle;
     private int cycle;
 
-    public playerController2 player2;
+
+    private bool targetsIdentified = false;
 
     private void Awake()
     {
@@ -30,7 +36,11 @@ public class GridManager : MonoBehaviour
         }
 
         allEnemies = new EnemyController[numberOfEnemies];
-        player2.enabled = true;
+
+
+        clicksPerCycle = numberOfEnemies;
+
+
     }
 
     private void Start()
@@ -40,6 +50,8 @@ public class GridManager : MonoBehaviour
 
     public void ResetCellColor()
     {
+        
+
         for (int i = 0; i < allCells.Length; i++)
         {
             if(i % 2 == 0)
@@ -50,31 +62,49 @@ public class GridManager : MonoBehaviour
             {
                 allCells[i].GetComponent<SpriteRenderer>().color = Color.white;
             }
+
+            allCells[i].GetComponent<CellManager>().isTargeted = false;
         }
+        
     }
 
     private void InitializeEnemies()
     {
-        for (int i = 0; i < numberOfEnemies; i++) 
+
+        int i = 0;
+
+        while (i < numberOfEnemies) 
         {
+            
             Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
 
-            if(grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied == true)
+            if((grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
             {
-                i--;
-                return;
+                spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
+                
             }
-
-            
-            GameObject enemy = Instantiate(simpleEnemy);
-            EnemyController controller = enemy.GetComponent<EnemyController>();
-            controller.gridManager = this.gameObject.GetComponent<GridManager>();
-            controller.startingSquare = spawnLocation;
-            controller.Spawn();
-            allEnemies[i] = controller;
+            else
+            {
+                GameObject enemy = Instantiate(simpleEnemy);
+                EnemyController controller = enemy.GetComponent<EnemyController>();
+                controller.gridManager = this.gameObject.GetComponent<GridManager>();
+                controller.startingSquare = spawnLocation;
+                controller.Spawn();
+                allEnemies[i] = controller;
+                i++;
+            }
         }
 
-        OnCycleStart();
+        
+    }
+
+    public void RemoveEnemy(GameObject gameObject)
+    {
+        for (int i = 0; i < allEnemies.Count(); i++){
+            if (allEnemies[i] == gameObject){
+                allEnemies[i] = null;
+            }
+        }
     }
 
     private void OnCycleStart()
@@ -83,18 +113,60 @@ public class GridManager : MonoBehaviour
     }
     private IEnumerator EnemyActions()
     {
-        for(int i = 0; i < allEnemies.Length; i++)
+        if(!targetsIdentified)
         {
-            yield return new WaitForSeconds(0.25f);
-            allEnemies[i].MovePosition();
+            for (int i = 0; i < allEnemies.Length; i++)
+            {
+                yield return new WaitForSeconds(0.25f);
+                allEnemies[i].EstablishTarget();
+            }
+            
+        }
+        else
+        {
+            for (int i = 0; i < allEnemies.Length; i++)
+            {
+                yield return new WaitForSeconds(0.25f);
+                allEnemies[i].MovePosition();
+            }
         }
 
-        yield return new WaitForSeconds(1f);
+        targetsIdentified = !targetsIdentified;
+
+
         //ResetCellColor();
-        OnCycleStart();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnCycleStart();
+        }
 
+        //ResetCellColor();
+
+    }
+
+    public void ClickUpdate(){
+        
+        click = click+1;
+
+        if (click == clicksPerCycle)
+        {
+            CycleUpdate();
+            click = 0;
+        }
+
+    }
+
+    //public void ResetTargeting()
+
+    public void CycleUpdate()
+    {
+        cycle++;
+        ResetCellColor();
+    }
 
 
 
