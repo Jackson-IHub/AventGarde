@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -15,6 +16,10 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 currentPosition;
     private GameObject currentCell;
+
+    public Vector2 tempPos;
+
+    bool isSetUp = false;
 
     //not used now, maybe will be used later?
     bool canUp;
@@ -39,11 +44,11 @@ public class EnemyController : MonoBehaviour
         this.transform.localPosition = Vector2.zero;
         currentCell.GetComponent<CellManager>().isOccupied = true;
 
-        CheckLegalPositions();
+        //CheckLegalPositions();
     }
 
 
-    private void CheckLegalPositions()
+    public void CheckLegalPositions()
     {
         
 
@@ -99,11 +104,13 @@ public class EnemyController : MonoBehaviour
         gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].y].GetComponent<SpriteRenderer>().color = Color.green;
 
         //StartCoroutine(WaitForMove());
+
+        
     }
 
     private void IsTargetValid()
     {
-
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -112,22 +119,60 @@ public class EnemyController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+
     public void MovePosition()
     {
         currentCell.GetComponent<CellManager>().isOccupied = false;
         currentCell.GetComponent<CellManager>().isTargeted = false;
 
+
         currentPosition = possiblePositions[randomDir];
-        currentCell.GetComponent<CellManager>().isTargeted = false;
-        currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
+        currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y]; // now we set the next cell as our new occupied cell if its free
+        
+        currentCell.GetComponent<CellManager>().CheckForChildren();
+            
         this.transform.SetParent(currentCell.transform, true);
         this.transform.localPosition = Vector2.zero;
+
         possiblePositions.Clear();
         currentCell.GetComponent<CellManager>().ResetColor();
+        currentCell.GetComponent<CellManager>().ResetStatus();
         currentCell.GetComponent<CellManager>().isOccupied = true;
+        gridManager.ClickUpdate();
 
 
-        CheckLegalPositions();
+
+        // tempPos = currentPosition; // temppos is the current position vector
+        // // current changes to next pos
+        // currentPosition = possiblePositions[randomDir]; //get next random position of net cell to move to
+        // currentCell.GetComponent<CellManager>().isTargeted = false; // this is setting the bool that we are on rn
+
+
+        // //currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
+
+        // // if unoccupied then move to current direction with rand
+        // if (!gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].x].GetComponent<CellManager>().isOccupied||!gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].x].GetComponent<CellManager>().isTargeted){
+        //     currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y]; // now we set the next cell as our new occupied cell if its free
+            
+        //     this.transform.SetParent(currentCell.transform, true);
+        //     this.transform.localPosition = Vector2.zero;
+
+
+        // }else{
+        //     currentCell.GetComponent<CellManager>().isTargeted = false;
+        //     currentPosition = tempPos;
+        //     currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
+
+        // }
+
+        // possiblePositions.Clear();
+        // currentCell.GetComponent<CellManager>().ResetColor();
+        // currentCell.GetComponent<CellManager>().ResetStatus();
+        // currentCell.GetComponent<CellManager>().isOccupied = true;
+
+
+        //CheckLegalPositions();
+        //gridManager.ClickUpdate();
     }
 
     IEnumerator WaitForMove()
