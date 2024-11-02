@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public GameObject[,] grid;
+    public GameObject[,] grid = new GameObject[5,5];
 
     public Vector2[] possiblePositions;
     public GameObject[] allCells;
@@ -15,6 +15,21 @@ public class GridManager : MonoBehaviour
 
             grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y] = allCells[i];
             i++;
+        }
+    }
+
+    public void ResetCellColor()
+    {
+        for (int i = 0; i < allCells.Length; i++)
+        {
+            if(i % 2 == 0)
+            {
+                allCells[i].GetComponent<SpriteRenderer>().color = Color.black;
+            }
+            else
+            {
+                allCells[i].GetComponent<SpriteRenderer>().color = Color.white;
+            }
         }
     }
 
