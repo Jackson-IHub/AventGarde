@@ -24,14 +24,20 @@ public class EnemyController : MonoBehaviour
 
     int randomDir;
 
-    private void Start()
+    public void Start()
     {
         //initializes the enemy
 
+        
+    }
+
+    public void Spawn()
+    {
         currentPosition = startingSquare;
         currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
         this.transform.SetParent(currentCell.transform, true);
-        this.transform.localPosition = Vector2.zero; 
+        this.transform.localPosition = Vector2.zero;
+        currentCell.GetComponent<CellManager>().isOccupied = true;
 
         CheckLegalPositions();
     }
@@ -39,7 +45,7 @@ public class EnemyController : MonoBehaviour
 
     private void CheckLegalPositions()
     {
-        gridManager.ResetCellColor();
+        
 
         canUp = false;
         canDown = false;
@@ -50,42 +56,52 @@ public class EnemyController : MonoBehaviour
         {
             possiblePositions.Add(currentPosition - Vector2.up);
             canDown = true;
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            //gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         if(currentPosition.y + 1 <= 4) // can we go one up?
         {
             possiblePositions.Add(currentPosition + Vector2.up);
             canUp = true;
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            //gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
             
         }
         if (currentPosition.x + 1 <= 4) // can we go right?
         {
             possiblePositions.Add(currentPosition + Vector2.right);
             canRight = true;
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            //gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         if(currentPosition.x - 1 >= 0) //can we go left?
         {
             possiblePositions.Add(currentPosition - Vector2.right);
             canLeft = true;
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            //gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
             
         }
 
-        randomDir = Random.Range(0, possiblePositions.Count);
-        Debug.Log(randomDir.ToString() + "direction");
+        for (int i = 0; i < possiblePositions.Count; i++)
+        {
+            if (gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().isOccupied == true)
+            {
+               possiblePositions.Remove(possiblePositions[i]);
+            }
+        }
 
-        StartCoroutine(WaitForMove());
+        randomDir = Random.Range(0, possiblePositions.Count);
+
+        gridManager.grid[(int)possiblePositions[randomDir].x, (int)possiblePositions[randomDir].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+
+        //StartCoroutine(WaitForMove());
     }
 
-    private void MovePosition(Vector2 pos)
+    public void MovePosition()
     {
-        currentPosition = pos;
+        currentPosition = possiblePositions[randomDir];
         currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
         this.transform.SetParent(currentCell.transform, true);
         this.transform.localPosition = Vector2.zero;
         possiblePositions.Clear();
+        currentCell.GetComponent<CellManager>().ResetColor();
 
 
         CheckLegalPositions();
@@ -94,8 +110,8 @@ public class EnemyController : MonoBehaviour
     IEnumerator WaitForMove()
     {
         
-        yield return new WaitForSeconds(2f);
-        MovePosition(possiblePositions[randomDir]);
+        yield return new WaitForSeconds(1f);
+        //MovePosition(possiblePositions[randomDir]);
 
     }
 
