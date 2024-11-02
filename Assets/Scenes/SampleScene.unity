@@ -333,7 +333,6 @@ GameObject:
   m_Component:
   - component: {fileID: 171084306}
   - component: {fileID: 171084305}
-  - component: {fileID: 171084307}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -411,25 +410,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &171084307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171084304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7514b0bca652cf142a6ca28b794e9bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 171084304}
-  playerPosition: {x: 4, y: 0}
-  gridManager: {fileID: 1011287724}
-  currentCell: {fileID: 1049020068}
-  cellManager: {fileID: 0}
-  possiblePositions: []
-  movementLock: 0
 --- !u!1 &191206568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1944,7 @@ MonoBehaviour:
   - {fileID: 960138192}
   simpleEnemy: {fileID: 0}
   numberOfEnemies: 0
-  player2: {fileID: 171084307}
+  player2: {fileID: 0}
 --- !u!4 &1011287725
 Transform:
   m_ObjectHideFlags: 0
@@ -3285,6 +3265,7 @@ MonoBehaviour:
   currentCell: {fileID: 1359624197}
   cellManager: {fileID: 0}
   possiblePositions: []
+  pastPositions: []
   movementLock: 0
 --- !u!1 &2018881752
 GameObject:
