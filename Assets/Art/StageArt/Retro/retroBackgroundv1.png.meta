@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      retroBackgroundv1_0: -5578086161638051348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

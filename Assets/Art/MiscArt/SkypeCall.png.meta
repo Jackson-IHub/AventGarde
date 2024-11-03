@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SkypeCall_0: 7624377115345768625
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
