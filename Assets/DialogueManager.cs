@@ -33,9 +33,17 @@ public class DialogueManager : MonoBehaviour
 
     private bool isTyping = false;
 
+    GridManager gridManager;
+
+
+
+    public playerController playerController;
+
 
     public void Start()
     {
+        gridManager = FindFirstObjectByType<GridManager>();
+        playerController = FindFirstObjectByType<playerController>();
         ReadTextFile();
     }
 
@@ -74,7 +82,7 @@ public class DialogueManager : MonoBehaviour
         
         for (int i = 0; i < numberOfCharacters; i++)
         {
-            yield return new WaitForSeconds(0.075f);
+            yield return new WaitForSeconds(0.005f);
 
             if (whoIsSpeaking[lineNumber] == 1)
             {
@@ -104,6 +112,12 @@ public class DialogueManager : MonoBehaviour
         stacyTextBubble.SetActive(false);
         dialogue.Clear();
         dialogueFinished = true;
+        playerController.CheckLegalPositions();
+        if(finishedRound)
+        {
+            gridManager.NextScene();
+        }
+        
     }
 
     public void AdvanceDialogue() // call when a player presses a button in Dialogue Trigger

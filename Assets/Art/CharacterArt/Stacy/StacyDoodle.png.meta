@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StacyDoodle_0: 6321852755690183867
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

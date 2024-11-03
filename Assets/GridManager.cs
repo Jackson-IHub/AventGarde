@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
+    public int sceneNumber;
+
     public GameObject[,] grid;
 
     public int gridLength;
@@ -59,6 +61,16 @@ public class GridManager : MonoBehaviour
         allEnemies.Add(enemy);
         numberOfEnemies++;
         clicksPerCycle = numberOfEnemies;
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(sceneNumber +1);
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(sceneNumber);
     }
 
     public void ResetCellColor()
@@ -199,7 +211,7 @@ public class GridManager : MonoBehaviour
 
     public void YouLose()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(sceneNumber);
     }
 
 

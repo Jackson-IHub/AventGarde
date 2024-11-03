@@ -26,6 +26,11 @@ public class EnemyController : MonoBehaviour
 
     public bool randomSwapping = false;
 
+    private void Awake()
+    {
+        gridManager = GetComponent<GridManager>();
+    }
+
     private void Start()
     {
         Spawn();
@@ -110,7 +115,8 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        gridManager.grid[(int)targetPosition.x, (int)targetPosition.y].GetComponent<SpriteRenderer>().color = Color.red;
+        gridManager.grid[(int)targetPosition.x, (int)targetPosition.y].GetComponent<CellManager>().TargetingSquare(false);
+        gridManager.grid[(int)targetPosition.x, (int)targetPosition.y].GetComponent<CellManager>().enemyCircle.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     private void FlipEnemy()
@@ -135,7 +141,7 @@ public class EnemyController : MonoBehaviour
         this.transform.localPosition = Vector2.zero;
 
         possiblePositions.Clear();
-        currentCell.GetComponent<CellManager>().ResetColor();
+        currentCell.GetComponent<CellManager>().ResetColor(false);
         currentCell.GetComponent<CellManager>().ResetStatus();
         currentCell.GetComponent<CellManager>().isOccupied = true;
     }

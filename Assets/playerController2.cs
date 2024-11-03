@@ -1,5 +1,4 @@
 using JetBrains.Annotations;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -181,7 +180,7 @@ public class playerController2 : MonoBehaviour
         {
             currentCell = gridManager.grid[(int)possiblePositions[i].x,(int)possiblePositions[i].y];
             //currentCell.GetComponent<CellManager>().ResetColor();
-            gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor();
+            //gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor();
         }
         possiblePositions.Clear();
         
