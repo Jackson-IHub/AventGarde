@@ -26,13 +26,20 @@ public class EnemyController : MonoBehaviour
 
     public bool randomSwapping = false;
 
+    private void Start()
+    {
+        Spawn();
+    }
+
     public void Spawn()
     {
         currentPosition = startingSquare;
+        gridManager = FindAnyObjectByType<GridManager>();
         Debug.Log("starting square " + startingSquare);
         currentCell = gridManager.grid[(int)currentPosition.x, (int)currentPosition.y];
         this.transform.SetParent(currentCell.transform, true);
         this.transform.localPosition = Vector2.zero;
+        gridManager.AddEnemy(this.gameObject.GetComponent<EnemyController>());
         currentCell.GetComponent<CellManager>().isOccupied = true;
     }
 

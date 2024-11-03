@@ -7,10 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
-
-
-
-    public GameObject[,] grid = new GameObject[5,5];
+    public GameObject[,] grid;
 
     public int gridLength;
     public int gridHeight;
@@ -23,10 +20,10 @@ public class GridManager : MonoBehaviour
 
     public GameObject simpleEnemy;
 
-    public int numberOfEnemies;
+    private int numberOfEnemies = 0;
     private GameObject enemy;
 
-    private EnemyController[] allEnemies;
+    private List<EnemyController> allEnemies = new List<EnemyController>();
 
     public int click;
 
@@ -38,25 +35,27 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
+        grid =  new GameObject[gridLength, gridHeight];
         int i = 0;
         foreach (var cell in allCells)
         {
             grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y] = allCells[i];
             i++;
-            
-            
         }
 
-        gridLength = grid.GetLength(0);
-        gridHeight = grid.GetLength(1);
-
-        allEnemies = new EnemyController[numberOfEnemies];
         clicksPerCycle = numberOfEnemies;
     }
 
     private void Start()
     {
         InitializeEnemies();
+    }
+
+    public void AddEnemy(EnemyController enemy)
+    {
+        allEnemies.Add(enemy);
+        numberOfEnemies++;
+        clicksPerCycle = numberOfEnemies;
     }
 
     public void ResetCellColor()
@@ -120,9 +119,9 @@ public class GridManager : MonoBehaviour
 
     private void OnCycleStart()
     {
-        if (playerController.targetPosition != new Vector2(-1, -1))
+        //if (playerController.targetPosition != new Vector2(-1, -1))
         {
-            PlayerAction();
+            //PlayerAction();
             StartCoroutine(EnemyActions());
         }
 
@@ -132,7 +131,7 @@ public class GridManager : MonoBehaviour
     {
         if(!targetsIdentified)
         {
-            for (int i = 0; i < allEnemies.Length; i++)
+            for (int i = 0; i < allEnemies.Count; i++)
             {
                 yield return new WaitForSeconds(0.25f);
                 allEnemies[i].EstablishTarget();
@@ -142,12 +141,12 @@ public class GridManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < allEnemies.Length; i++)
+            for (int i = 0; i < allEnemies.Count; i++)
             {
                 yield return new WaitForSeconds(0.25f);
                 allEnemies[i].MovePosition();
             }
-            for (int i = 0; i < allEnemies.Length; i++)
+            for (int i = 0; i < allEnemies.Count; i++)
             {
                 yield return new WaitForSeconds(0.25f);
                 allEnemies[i].EstablishTarget();
