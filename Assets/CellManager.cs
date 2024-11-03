@@ -25,9 +25,18 @@ public class CellManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(this.gameObject.GetComponentInChildren<playerController>() && this.GetComponentInChildren<EnemyController>())
+        {
+            gridManager.YouLose();
+        }
+    }
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        gridManager = FindFirstObjectByType<GridManager>();
     }
 
     public void ResetColor()
@@ -39,11 +48,4 @@ public class CellManager : MonoBehaviour
     {
         isTargeted = false;
     }
-
-
-
-
-
-
-
 }

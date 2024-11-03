@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GridManager : MonoBehaviour
 
     public Vector2[] possiblePositions;
     public GameObject[] allCells;
+
+    public playerController playerController;
 
     public GameObject simpleEnemy;
 
@@ -109,7 +112,11 @@ public class GridManager : MonoBehaviour
 
     private void OnCycleStart()
     {
-        StartCoroutine(EnemyActions());
+        if (playerController.targetPosition != new Vector2(-1, -1))
+        {
+            PlayerAction();
+            StartCoroutine(EnemyActions());
+        }        
     }
     private IEnumerator EnemyActions()
     {
@@ -120,6 +127,7 @@ public class GridManager : MonoBehaviour
                 yield return new WaitForSeconds(0.25f);
                 allEnemies[i].EstablishTarget();
             }
+            targetsIdentified = true;
             
         }
         else
@@ -129,12 +137,20 @@ public class GridManager : MonoBehaviour
                 yield return new WaitForSeconds(0.25f);
                 allEnemies[i].MovePosition();
             }
+            for (int i = 0; i < allEnemies.Length; i++)
+            {
+                yield return new WaitForSeconds(0.25f);
+                allEnemies[i].EstablishTarget();
+            }
         }
-
-        targetsIdentified = !targetsIdentified;
 
 
         //ResetCellColor();
+    }
+
+    private void PlayerAction()
+    {
+        playerController.SubmitMove();
     }
 
     private void Update()
@@ -148,7 +164,8 @@ public class GridManager : MonoBehaviour
 
     }
 
-    public void ClickUpdate(){
+    public void ClickUpdate()
+    {
         
         click = click+1;
 
@@ -168,7 +185,10 @@ public class GridManager : MonoBehaviour
         ResetCellColor();
     }
 
-
+    public void YouLose()
+    {
+        SceneManager.LoadScene(0);
+    }
 
 
 }

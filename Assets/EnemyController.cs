@@ -73,8 +73,6 @@ public class EnemyController : MonoBehaviour
         }
 
         gridManager.grid[(int)targetPosition.x, (int)targetPosition.y].GetComponent<SpriteRenderer>().color = Color.red;
-
-
     }
 
 

@@ -1,5 +1,4 @@
 using JetBrains.Annotations;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -20,7 +19,11 @@ public class playerController : MonoBehaviour
 
         public List<Vector2> pastPositions;
 
+    public Vector2 targetPosition = new Vector2(-1,-1);
+
         //clear possible postitions do for loop for the resetting
+
+    MoveDirection moveDirection;
 
 
         // will halt player movement when enemy are in motion
@@ -62,77 +65,28 @@ public class playerController : MonoBehaviour
 
     }
 
-    void PlayerMove(){
-        //Debug.Log($"{playerPosition.x} {playerPosition.y}");
-        //TODO needs to check for collision
-        //if (player.CompareTag("Player1")){
-            if (Input.GetKeyUp(KeyCode.W)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y+1];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.y += 1;
-                CheckLegalPositions();
+    void PlayerMove()
+    {
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+            moveDirection = MoveDirection.UP;
+            PlaceMove();
             }
-            if (Input.GetKeyUp(KeyCode.S)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y-1];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.y -= 1;
-                CheckLegalPositions();
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+            moveDirection = MoveDirection.DOWN;
+            PlaceMove();
             }
-            if (Input.GetKeyUp(KeyCode.A)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x-1,(int)playerPosition.y];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.x -= 1;
-                CheckLegalPositions();
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                moveDirection = MoveDirection.LEFT;
+                PlaceMove();
             }
-            if (Input.GetKeyUp(KeyCode.D)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x+1,(int)playerPosition.y];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.x += 1;
-                CheckLegalPositions();
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                moveDirection = MoveDirection.RIGHT;
+                PlaceMove();
             }
-        //}
-        if (player.CompareTag("Player2") && !movementLock){
-            //currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y];
-            if (Input.GetKeyUp(KeyCode.UpArrow)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y+1];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.y += 1;
-                CheckLegalPositions();
-            }
-            if (Input.GetKeyUp(KeyCode.DownArrow)){
-                currentCell = gridManager.grid[(int)playerPosition.x,(int)playerPosition.y-1];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.y -= 1;
-                CheckLegalPositions();
-            }
-            if (Input.GetKeyUp(KeyCode.LeftArrow)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x-1,(int)playerPosition.y];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.x -= 1;
-                CheckLegalPositions();
-            }
-            if (Input.GetKeyUp(KeyCode.RightArrow)){
-                ClearPositions();
-                currentCell = gridManager.grid[(int)playerPosition.x+1,(int)playerPosition.y];
-                player.transform.SetParent(currentCell.transform, true);
-                player.transform.localPosition = Vector2.zero;
-                playerPosition.x += 1;
-                CheckLegalPositions();
-            }
-        }
         
     }
 
@@ -172,8 +126,57 @@ public class playerController : MonoBehaviour
             gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
             
         }
+    }
 
-        
+    private void PlaceMove()
+    {
+        for (int i = 0; i < possiblePositions.Count; i++)
+        {
+            gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor();
+        }
+
+        if (moveDirection == MoveDirection.RIGHT)
+        {
+            gridManager.grid[(int)playerPosition.x + 1, (int)playerPosition.y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            targetPosition = playerPosition;
+            targetPosition += Vector2.right;
+        }
+        if((moveDirection == MoveDirection.LEFT))
+        {
+            gridManager.grid[(int)playerPosition.x - 1, (int)playerPosition.y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            targetPosition = playerPosition;
+            targetPosition -= Vector2.right;
+        }
+        if (moveDirection == MoveDirection.UP)
+        {
+            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y + 1].GetComponent<SpriteRenderer>().color = Color.yellow;
+            targetPosition = playerPosition;
+            targetPosition += Vector2.up;
+        }
+        if (moveDirection == MoveDirection.DOWN)
+        {
+            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y - 1].GetComponent<SpriteRenderer>().color = Color.yellow;
+            targetPosition = playerPosition;
+            targetPosition += Vector2.down;
+        }
+    }
+
+    public void SubmitMove()
+    {
+        if (targetPosition == new Vector2(-1, -1))
+        {
+
+        }
+        else 
+        {
+            ClearPositions();
+            currentCell = gridManager.grid[(int)targetPosition.x, (int)targetPosition.y];
+            player.transform.SetParent(currentCell.transform, true);
+            player.transform.localPosition = Vector2.zero;
+            playerPosition = targetPosition;
+            targetPosition = new Vector2(-1, -1);
+            CheckLegalPositions();
+        }
     }
 
     public enum MoveDirection
