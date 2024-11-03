@@ -1,0 +1,27 @@
+Rex: This doesn’t quite look like D-616 does it. Where did we end up?
+
+Rex: Stacy? Hello? Where are you?
+
+Stacy: Coming in, Rex, do you hear me?
+
+Rex: What was that? 
+
+Rex: Oh right, the interdimensional digital communication system. I hear you, over. 
+
+Stacy: I made it to D-616, where are you?
+
+Rex: I’m in the woods somewhere, it looks like it's autumn here. 
+
+Stacy: Ah, that sounds like D-411, the endless woods. Known for its lush forests and beautiful fall landscape. 
+
+Rex: How come you made it over and I didn’t?
+
+Stacy: I don’t think the portal was able to handle two dinosaurs in quick succession. After I went through it probably got messed up a bit, so when you went after me you got thrown into a random dimension.  
+
+Stacy: Not to worry, I’ll talk you through how to navigate it. 
+
+Stacy: You can move around using the WASD keys on your keyboard to select a spot, and then press space to move there.
+
+Stacy: After you make a move, an enemy will make theirs. They will always move to the red circle, and you will move to the green circle. The enemies will only damage you, not each other.
+
+Stacy: You’ll need to collect the scattered parts of the time dilation portal to progress. There should be one in each area, but maybe more.
