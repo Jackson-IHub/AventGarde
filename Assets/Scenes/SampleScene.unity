@@ -1982,7 +1982,7 @@ MonoBehaviour:
   - {fileID: 1191738811}
   - {fileID: 960138192}
   playerController: {fileID: 1928481680}
-  simpleEnemy: {fileID: 6660624157749960730, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
+  simpleEnemy: {fileID: 6660624157749960730, guid: 08a7303ce5df9e545b1260d363d80173, type: 3}
   numberOfEnemies: 3
   click: 0
 --- !u!4 &1011287725
@@ -3339,6 +3339,7 @@ MonoBehaviour:
   cellManager: {fileID: 0}
   possiblePositions: []
   pastPositions: []
+  targetPosition: {x: -1, y: -1}
   movementLock: 0
 --- !u!1 &2018881752
 GameObject:
