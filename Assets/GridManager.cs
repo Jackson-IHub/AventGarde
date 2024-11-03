@@ -7,7 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
+
+
+
     public GameObject[,] grid = new GameObject[5,5];
+
+    public int gridLength;
+    public int gridHeight;
+
 
     public Vector2[] possiblePositions;
     public GameObject[] allCells;
@@ -36,14 +43,15 @@ public class GridManager : MonoBehaviour
         {
             grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y] = allCells[i];
             i++;
+            
+            
         }
 
+        gridLength = grid.GetLength(0);
+        gridHeight = grid.GetLength(1);
+
         allEnemies = new EnemyController[numberOfEnemies];
-
-
         clicksPerCycle = numberOfEnemies;
-
-
     }
 
     private void Start()
@@ -74,32 +82,32 @@ public class GridManager : MonoBehaviour
     private void InitializeEnemies()
     {
 
-        int i = 0;
+        //int i = 0;
 
-        while (i < numberOfEnemies) 
-        {
+        //while (i < numberOfEnemies) 
+        //{
             
-            Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
+        //    Vector2 spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
 
-            if((grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
-            {
-                spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
+        //    if((grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isOccupied) || (grid[(int)spawnLocation.x, (int)spawnLocation.y].GetComponent<CellManager>().isTargeted))
+        //    {
+        //        spawnLocation = new Vector2(Random.Range(0, 4), Random.Range(0, 4));
                 
-            }
-            else
-            {
-                GameObject enemy = Instantiate(simpleEnemy);
-                EnemyController controller = enemy.GetComponent<EnemyController>();
-                controller.gridManager = this.gameObject.GetComponent<GridManager>();
-                controller.startingSquare = spawnLocation;
-                controller.Spawn();
-                allEnemies[i] = controller;
-                i++;
-            }
-        }
-
-        
+        //    }
+        //    else
+        //    {
+        //        GameObject enemy = Instantiate(simpleEnemy);
+        //        EnemyController controller = enemy.GetComponent<EnemyController>();
+        //        controller.gridManager = this.gameObject.GetComponent<GridManager>();
+        //        controller.startingSquare = spawnLocation;
+        //        controller.Spawn();
+        //        allEnemies[i] = controller;
+        //        i++;
+        //    }
+        //}
     }
+
+
 
     public void RemoveEnemy(GameObject gameObject)
     {
@@ -116,7 +124,9 @@ public class GridManager : MonoBehaviour
         {
             PlayerAction();
             StartCoroutine(EnemyActions());
-        }        
+        }
+
+        
     }
     private IEnumerator EnemyActions()
     {

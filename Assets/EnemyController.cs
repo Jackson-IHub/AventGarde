@@ -22,6 +22,9 @@ public class EnemyController : MonoBehaviour
 
     public bool isHorizontal = true;
     private bool pointedRight = true;
+    private bool pointedUp = true;
+
+    public bool randomSwapping = false;
 
     public void Spawn()
     {
@@ -35,20 +38,22 @@ public class EnemyController : MonoBehaviour
 
     public void EstablishTarget()
     {
+        if(randomSwapping)
+        {
+            FlipEnemy();
+        }
+
         if (isHorizontal)
         {
             if (pointedRight)
             {
-                if (currentPosition.x + Vector2.right.x <= 4)
+                if (currentPosition.x + Vector2.right.x <= gridManager.gridLength - 1)
                 {
-                    Debug.Log("less than 4");
                     targetPosition = currentPosition + Vector2.right;
                     Debug.Log(targetPosition);
                 }
                 else
                 {
-                    Debug.Log("equal to 4");
-
                     targetPosition = currentPosition - Vector2.right;
                     pointedRight = false;
                 }
@@ -57,22 +62,56 @@ public class EnemyController : MonoBehaviour
             {
                 if (currentPosition.x - Vector2.right.x < 0)
                 {
-                    Debug.Log("too far left");
                     targetPosition = currentPosition + Vector2.right;
                     pointedRight = true;
                 }
                 else
                 {
-
-                    Debug.Log("not far left enough");
                     targetPosition = currentPosition - Vector2.right;
                     
                 }
             }
 
         }
+        else //must be going vertically
+        {
+            if (pointedUp)
+            {
+                if (currentPosition.y + Vector2.up.y <= gridManager.gridHeight - 1)
+                {
+                    targetPosition = currentPosition + Vector2.up;
+                    Debug.Log(targetPosition);
+                }
+                else
+                {
+                    targetPosition = currentPosition - Vector2.up;
+                    pointedUp = false;
+                }
+            }
+            else
+            {
+                if (currentPosition.y - Vector2.up.y < 0)
+                {
+                    targetPosition = currentPosition + Vector2.up;
+                    pointedUp = true;
+                }
+                else
+                {
+                    targetPosition = currentPosition - Vector2.up;
+
+                }
+            }
+        }
 
         gridManager.grid[(int)targetPosition.x, (int)targetPosition.y].GetComponent<SpriteRenderer>().color = Color.red;
+    }
+
+    private void FlipEnemy()
+    {
+        if(Random.Range(0,1) == 0)
+        {
+            isHorizontal = !isHorizontal;
+        }
     }
 
 
