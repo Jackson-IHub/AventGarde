@@ -311,6 +311,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &441342413
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +417,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &444895368
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +523,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &450141633
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +838,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 9142478215369904053, guid: 37a05b83c99843c46be1eab936265205, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1073,6 +1076,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &1461495610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,6 +1303,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &1609804365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1409,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &1738323689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,6 +1549,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &1898851696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1655,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1 &1928481677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,6 +1848,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
+  collectible: {fileID: 0}
 --- !u!1001 &2066563943
 PrefabInstance:
   m_ObjectHideFlags: 0
