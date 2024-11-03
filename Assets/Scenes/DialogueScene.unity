@@ -2211,6 +2211,10 @@ MonoBehaviour:
   - {fileID: 1140742575}
   - {fileID: 1191738811}
   - {fileID: 960138192}
+  playerController: {fileID: 0}
+  simpleEnemy: {fileID: 0}
+  numberOfEnemies: 0
+  click: 0
 --- !u!4 &1011287725
 Transform:
   m_ObjectHideFlags: 0
@@ -2243,9 +2247,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57eec87a15c89dd4da0b851b950c1cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueFinished: 0
   textFile: {fileID: 4900000, guid: 0c48c8701f17d8b4999288cfbf3ea2f3, type: 3}
   rexTextMesh: {fileID: 1634196720}
   stacyTextMesh: {fileID: 523186623}
+  rexTextBubble: {fileID: 164690272}
+  stacyTextBubble: {fileID: 1963252563}
 --- !u!1 &1049020068
 GameObject:
   m_ObjectHideFlags: 0
