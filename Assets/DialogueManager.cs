@@ -13,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     public TextMeshPro rexTextMesh;
     public TextMeshPro stacyTextMesh;
 
+    public GameObject rexTextBubble;
+    public GameObject stacyTextBubble;
+
     bool rexSpeaking;
 
     private Queue<string> dialogue = new Queue<string>();
@@ -45,26 +48,42 @@ public class DialogueManager : MonoBehaviour
 
         StartCoroutine(PrintOutText());
 
+        if(lineNumber == 0)
+        {
+            stacyTextBubble.SetActive(false);
+            
+        }
+        else
+        {
+            rexTextBubble.SetActive(false);
+        }
+
+        
         
 
-       
     }
 
     private IEnumerator PrintOutText()
     {
+        
+
         int numberOfCharacters = dialogue.Peek().Length;
         
         for (int i = 0; i < numberOfCharacters; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.075f);
 
             if (whoIsSpeaking[lineNumber] == 1)
             {
                 rexTextMesh.text += dialogue.Peek()[i];
+                rexTextBubble.SetActive(true);
+                stacyTextBubble.SetActive(false);
             }
             else
             {
                 stacyTextMesh.text += dialogue.Peek()[i];
+                stacyTextBubble.SetActive(true);
+                rexTextBubble.SetActive(false);
             }
         }
         lineNumber++;
