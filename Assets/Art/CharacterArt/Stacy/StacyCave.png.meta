@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d095f086d9f645440932146a3b6bd419
+guid: 21143d010dc4407418b11d1444428646
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9142478215369904053
-    second: forestBackgroundUpdated_0
+      213: -2274353742859004257
+    second: StacyCave_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: forestBackgroundUpdated_0
+      name: StacyCave_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 13
         y: 0
-        width: 1920
-        height: 1080
+        width: 200
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5bfced97f7b90ee70800000000000000
-      internalID: 9142478215369904053
+      spriteID: f961f47225fdf60e0800000000000000
+      internalID: -2274353742859004257
       vertices: []
       indices: 
       edges: []

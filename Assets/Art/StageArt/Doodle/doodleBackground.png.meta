@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fbb7b67ac03a3054d89a5aab60434567
+guid: cb0d0e2c42425f040bcab64fb0b02744
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -206146439330844585
-    second: spaceBackgroundUpdated_0
+      213: 7974752913834824375
+    second: doodleBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spaceBackgroundUpdated_0
+      name: doodleBackground_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75039f7d7ee932df0800000000000000
-      internalID: -206146439330844585
+      spriteID: 7b2d2a8e5830cae60800000000000000
+      internalID: 7974752913834824375
       vertices: []
       indices: 
       edges: []
