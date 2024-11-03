@@ -55,7 +55,7 @@ public class playerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentCell = gridManager.grid[0, 0];
+        currentCell = gridManager.grid[(int)playerPosition.x, (int)playerPosition.y];
 
         player.transform.SetParent(currentCell.transform, true);
         player.transform.localPosition = Vector2.zero; //visual update

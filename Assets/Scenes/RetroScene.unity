@@ -245,6 +245,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3693840356287622884, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
+      propertyPath: startingSquare.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693840356287622884, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
       propertyPath: startingSquare.y
       value: 2
       objectReference: {fileID: 0}
@@ -254,11 +258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980399837831525348, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 4980399837831525348, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4980399837831525348, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1844,6 +1848,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2345935916603479857, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473261499729597402, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7509122853393073219, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
@@ -1893,7 +1901,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8627044352376107169, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
 --- !u!1 &901979007
 GameObject:
@@ -3122,7 +3133,7 @@ MonoBehaviour:
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   enemyInCell: {fileID: 0}
   collectible: {fileID: 0}
-  targetCircle: {fileID: 0}
+  targetCircle: {fileID: 2443143262758539518, guid: 6ad17f97241a8af46ad24c3ddd83117d, type: 3}
   activeCircle: {fileID: 0}
   enemyCircle: {fileID: 0}
 --- !u!1 &1565388283
@@ -3429,7 +3440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3693840356287622884, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
       propertyPath: startingSquare.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3693840356287622884, guid: 1719efdcfe0446746b53461d55ad6087, type: 3}
       propertyPath: startingSquare.y
@@ -3832,6 +3843,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 4309592670703548303, guid: 58e10144301ac0e43ace289cd7b62ddf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797858572300596068, guid: 58e10144301ac0e43ace289cd7b62ddf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5562947456871214610, guid: 58e10144301ac0e43ace289cd7b62ddf, type: 3}
       propertyPath: m_SortingOrder
       value: -2
@@ -3879,7 +3898,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7852488687646969887, guid: 58e10144301ac0e43ace289cd7b62ddf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 58e10144301ac0e43ace289cd7b62ddf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
