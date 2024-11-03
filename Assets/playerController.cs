@@ -106,14 +106,14 @@ public class playerController : MonoBehaviour
             
             gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
         }
-        if(playerPosition.y + 1 <= 4) // can we go one up?
+        if(playerPosition.y + 1 <= gridManager.gridHeight - 1) // can we go one up?
         {
             possiblePositions.Add(playerPosition + Vector2.up);
         
             gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
             
         }
-        if (playerPosition.x + 1 <= 4) // can we go right?
+        if (playerPosition.x + 1 <= gridManager.gridLength - 1) // can we go right?
         {
             possiblePositions.Add(playerPosition + Vector2.right);
 
