@@ -9,7 +9,8 @@ using System.Collections;
 public class DialogueManager : MonoBehaviour
 {
     public bool dialogueFinished = false;
-    public TextAsset textFile;
+    public TextAsset textFileStart;
+    public TextAsset textFileEnd;
 
     public TextMeshPro rexTextMesh;
     public TextMeshPro stacyTextMesh;
@@ -26,22 +27,28 @@ public class DialogueManager : MonoBehaviour
 
     string constructedLine;
 
+    public bool finishedRound = false;
 
-    private void Start()
+    private bool didDialogueJustStart = false;
+
+    private bool isTyping = false;
+
+
+    public void Start()
     {
         ReadTextFile();
-
     }
 
     private void PrintDialogue()
     {
-
         rexSpeaking = false;
+        Debug.Log(dialogue.Count);
 
         if (dialogue.Count == 0 || dialogue.Peek().Contains("EndQueue")) // special phrase to stop dialogue
         {
-            dialogue.Dequeue(); // Clear Queue
+            Debug.Log("end of dialogue");
             EndDialogue();
+            return;
         }
 
         rexTextMesh.text = "";
@@ -58,17 +65,12 @@ public class DialogueManager : MonoBehaviour
         {
             rexTextBubble.SetActive(false);
         }
-
-        
-        
-
     }
 
     private IEnumerator PrintOutText()
     {
-        
-
         int numberOfCharacters = dialogue.Peek().Length;
+        isTyping = true;
         
         for (int i = 0; i < numberOfCharacters; i++)
         {
@@ -89,6 +91,7 @@ public class DialogueManager : MonoBehaviour
         }
         lineNumber++;
         dialogue.Dequeue();
+        isTyping = false;
         
     }
 
@@ -96,6 +99,9 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         rexTextMesh.text = "";
+        stacyTextMesh.text = "";
+        rexTextBubble.SetActive(false);
+        stacyTextBubble.SetActive(false);
         dialogue.Clear();
         dialogueFinished = true;
     }
@@ -107,7 +113,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && dialogueFinished == false && isTyping == false)
         {
             AdvanceDialogue();
         }
@@ -116,9 +122,20 @@ public class DialogueManager : MonoBehaviour
 
     private void ReadTextFile() // skip // 
     {
-
+        didDialogueJustStart = true;
+        dialogueFinished = false;
         lineNumber = 0;
-        string txt = textFile.text;
+
+        string txt;
+
+        if (finishedRound == false)
+        {
+            txt = textFileStart.text;
+        }
+        else 
+        { 
+            txt = textFileEnd.text; 
+        }
 
         string[] lines = txt.Split(System.Environment.NewLine.ToCharArray()); // Split dialogue lines by newline
 
@@ -145,7 +162,12 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
-        dialogue.Enqueue("EndQueue");
+
+        AdvanceDialogue();
+
     }
+    
+    
+
 
 }

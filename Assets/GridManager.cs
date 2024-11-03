@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour
     public int gridLength;
     public int gridHeight;
 
+    DialogueManager dialogueManager;
 
     public Vector2[] possiblePositions;
     public GameObject[] allCells;
@@ -35,6 +36,7 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
+        dialogueManager = this.GetComponent<DialogueManager>();
         grid =  new GameObject[gridLength, gridHeight];
         int i = 0;
         foreach (var cell in allCells)
@@ -44,6 +46,7 @@ public class GridManager : MonoBehaviour
         }
 
         clicksPerCycle = numberOfEnemies;
+        playerController = FindFirstObjectByType<playerController>();
     }
 
     private void Start()
@@ -119,7 +122,7 @@ public class GridManager : MonoBehaviour
 
     private void OnCycleStart()
     {
-        if (playerController.targetPosition != new Vector2(-1, -1) || !playerController.GetComponent<DialogueManager>().dialogueFinished)
+        if (playerController.targetPosition != new Vector2(-1, -1) && dialogueManager.dialogueFinished == true)
         {
             PlayerAction(); 
             StartCoroutine(EnemyActions());

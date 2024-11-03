@@ -25,6 +25,8 @@ public class playerController : MonoBehaviour
 
     MoveDirection moveDirection;
 
+    private DialogueManager dialogueManager;
+
 
         // will halt player movement when enemy are in motion
         // may not be needed if there is no animiations
@@ -33,10 +35,13 @@ public class playerController : MonoBehaviour
         //Grab the current cell from manualy inputed player position
 
         //currentCell = gridManager.grid[(int)playerPosition.x, (int)playerPosition.y];
-    
-        player.transform.SetParent(currentCell.transform, true);
-        player.transform.localPosition = Vector2.zero; //visual update
-        CheckLegalPositions();
+
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+
+        gridManager = FindFirstObjectByType<GridManager>();
+
+        player = this.gameObject;
+        
 
 
         //spriteRenderer = ManagerGetComponent<SpriteRenderer>();
@@ -50,7 +55,11 @@ public class playerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        currentCell = gridManager.grid[0, 0];
+
+        player.transform.SetParent(currentCell.transform, true);
+        player.transform.localPosition = Vector2.zero; //visual update
+        CheckLegalPositions();
     }
 
     // Update is called once per frame
@@ -99,6 +108,10 @@ public class playerController : MonoBehaviour
     }
     private void CheckLegalPositions()
     {
+        if(dialogueManager.dialogueFinished == false)
+        {
+            return;
+        }
 
         if(playerPosition.y - 1 >= 0) //can we go one down?
         {
@@ -130,6 +143,11 @@ public class playerController : MonoBehaviour
 
     private void PlaceMove()
     {
+        if (dialogueManager.dialogueFinished == false)
+        {
+            return;
+        }
+
         for (int i = 0; i < possiblePositions.Count; i++)
         {
             gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor();
