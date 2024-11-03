@@ -21,7 +21,10 @@ public class EnemyController : MonoBehaviour
     public Vector2 targetPosition;
 
     public bool isHorizontal = true;
+    public bool isZigZag = false;
     private bool pointedRight = true;
+    private bool pointedUp = true;
+
 
     public void Spawn()
     {
@@ -35,43 +38,158 @@ public class EnemyController : MonoBehaviour
 
     public void EstablishTarget()
     {
-        if (isHorizontal)
-        {
-            if (pointedRight)
+        if (!isZigZag){
+            if (isHorizontal)
             {
-                if (currentPosition.x + Vector2.right.x <= 4)
+                if (pointedRight)
                 {
-                    Debug.Log("less than 4");
-                    targetPosition = currentPosition + Vector2.right;
-                    Debug.Log(targetPosition);
+                    if (currentPosition.x + Vector2.right.x <= 4)
+                    {
+                        Debug.Log("less than 4");
+                        targetPosition = currentPosition + Vector2.right;
+                        Debug.Log(targetPosition);
+                    }
+                    else
+                    {
+                        Debug.Log("equal to 4");
+
+                        targetPosition = currentPosition - Vector2.right;
+                        pointedRight = false;
+                    }
                 }
                 else
                 {
-                    Debug.Log("equal to 4");
+                    if (currentPosition.x - Vector2.right.x < 0)
+                    {
+                        Debug.Log("too far left");
+                        targetPosition = currentPosition + Vector2.right;
+                        pointedRight = true;
+                    }
+                    else
+                    {
 
-                    targetPosition = currentPosition - Vector2.right;
-                    pointedRight = false;
+                        Debug.Log("not far left enough");
+                        targetPosition = currentPosition - Vector2.right;
+                        
+                    }
+                }
+
+            }else{
+                if (pointedUp)
+                {
+                    if (currentPosition.y + Vector2.up.y <= 4)
+                    {
+                        Debug.Log("less than 4");
+                        targetPosition = currentPosition + Vector2.up;
+                        Debug.Log(targetPosition);
+                    }
+                    else
+                    {
+                        Debug.Log("equal to 4");
+
+                        targetPosition = currentPosition - Vector2.up;
+                        pointedUp = false;
+                    }
+                }
+                else
+                {
+                    if (currentPosition.y - Vector2.up.y < 0)
+                    {
+                        Debug.Log("too far down");
+                        targetPosition = currentPosition + Vector2.up;
+                        pointedUp = true;
+                    }
+                    else
+                    {
+
+                        Debug.Log("not far down enough");
+                        targetPosition = currentPosition - Vector2.up;
+                        
+                    }
                 }
             }
-            else
+        }
+        else{
+            //do ZIG ZAG!
+            if (isHorizontal)
             {
-                if (currentPosition.x - Vector2.right.x < 0)
+                //Checks to see if we can go up after we hit left/right wall
+                //if (goingUp){
+                //issue
+                    if (currentPosition.y + Vector2.up.y <= 4){
+                        //zagUp = true;
+                        pointedUp = true;
+                    }else{
+                        //zagUp = false;
+                        pointedUp = false;
+                    }
+                //}
+
+                if (pointedRight)
                 {
-                    Debug.Log("too far left");
-                    targetPosition = currentPosition + Vector2.right;
-                    pointedRight = true;
+                    if (currentPosition.x + Vector2.right.x <= 4)
+                    {
+                        Debug.Log("less than 4");
+                        targetPosition = currentPosition + Vector2.right;
+                        Debug.Log(targetPosition);
+                    }
+                    else
+                    {
+                        Debug.Log("equal to 4");
+                        pointedRight = false;
+                        if (pointedUp){
+                            Debug.Log("Next Move Up");
+                            targetPosition = currentPosition + Vector2.up;
+                            Debug.Log(targetPosition);
+                        }
+                        else
+                        {
+                            Debug.Log("Next Move Down");
+                            targetPosition = currentPosition + Vector2.up;
+                            Debug.Log(targetPosition);
+ 
+                        }
+
+                        //targetPosition = currentPosition - Vector2.right;
+                        //now we need to force next move to be up or down 1
+                    }
                 }
                 else
                 {
+                    if (currentPosition.x - Vector2.right.x < 0)
+                    {
+                        //Need to move up or down since we are too far left
+                        pointedRight = true;
+                        if (pointedUp){
+                            Debug.Log("Next Move Up");
+                            targetPosition = currentPosition + Vector2.up;
+                            Debug.Log(targetPosition);
+                        }
+                        else
+                        {
+                            Debug.Log("Next Move Down");
+                            targetPosition = currentPosition + Vector2.up;
+                            Debug.Log(targetPosition);
+ 
+                        }
 
-                    Debug.Log("not far left enough");
-                    targetPosition = currentPosition - Vector2.right;
-                    
+                        // Debug.Log("too far left");
+                        // targetPosition = currentPosition + Vector2.right;
+
+
+                    }
+                    else
+                    {
+
+                        Debug.Log("not far left enough");
+                        targetPosition = currentPosition - Vector2.right;
+                        
+                    }
                 }
+
             }
 
         }
-
         gridManager.grid[(int)targetPosition.x, (int)targetPosition.y].GetComponent<SpriteRenderer>().color = Color.red;
     }
 
