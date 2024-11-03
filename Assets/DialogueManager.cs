@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections;
 public class DialogueManager : MonoBehaviour
 {
     public TextAsset textFile;
@@ -16,6 +17,10 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> dialogue = new Queue<string>();
     private List<int> whoIsSpeaking = new List<int>();
+
+    private int lineNumber = 0;
+
+    string constructedLine;
 
 
     private void Start()
@@ -35,28 +40,39 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
         }
 
-        if (dialogue.Peek().Contains("Rex: ") )
-        {
-            Debug.Log("test");
-            rexSpeaking = true;
-            PrintDialogue(); // print the rest of this line
-        }
-        if(dialogue.Peek().Contains("Stacy: ") )
-        {
-            rexSpeaking=false;
-        }
-        else
-        {
-            rexTextMesh.text = dialogue.Dequeue();
-        }
+        rexTextMesh.text = "";
+        stacyTextMesh.text = "";
 
-        if(whoIsSpeaking)
+        StartCoroutine(PrintOutText());
 
+        
 
-
-
-
+       
     }
+
+    private IEnumerator PrintOutText()
+    {
+        int numberOfCharacters = dialogue.Peek().Length;
+        
+        for (int i = 0; i < numberOfCharacters; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+
+            if (whoIsSpeaking[lineNumber] == 1)
+            {
+                rexTextMesh.text += dialogue.Peek()[i];
+            }
+            else
+            {
+                stacyTextMesh.text += dialogue.Peek()[i];
+            }
+        }
+        lineNumber++;
+        dialogue.Dequeue();
+        
+    }
+
+
     private void EndDialogue()
     {
         rexTextMesh.text = "";
@@ -79,6 +95,8 @@ public class DialogueManager : MonoBehaviour
 
     private void ReadTextFile() // skip // 
     {
+
+        lineNumber = 0;
         string txt = textFile.text;
 
         string[] lines = txt.Split(System.Environment.NewLine.ToCharArray()); // Split dialogue lines by newline
@@ -93,8 +111,7 @@ public class DialogueManager : MonoBehaviour
                     dialogue.Enqueue(curr);
                     whoIsSpeaking.Add(1);
                 }
-
-                if(line.StartsWith("Stacy: "))
+                else if(line.StartsWith("Stacy: "))
                 {
                     string curr = line.Substring(line.IndexOf(':') + 1); // curr = Hello, ...
                     dialogue.Enqueue(curr);
@@ -103,7 +120,7 @@ public class DialogueManager : MonoBehaviour
                 else
                 {
                     dialogue.Enqueue(line); // adds to the dialogue to be printed
-                    whoIsSpeaking.Add(whoIsSpeaking[whoIsSpeaking.Count]);
+                    whoIsSpeaking.Add(whoIsSpeaking[whoIsSpeaking.Count - 1]);
                 }
             }
         }
