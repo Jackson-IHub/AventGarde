@@ -55,7 +55,7 @@ public class playerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentCell = gridManager.grid[0, 0];
+        currentCell = gridManager.grid[(int)playerPosition.x, (int)playerPosition.y];
 
         player.transform.SetParent(currentCell.transform, true);
         player.transform.localPosition = Vector2.zero; //visual update
@@ -106,7 +106,7 @@ public class playerController : MonoBehaviour
     void RewindPositions(){
         playerPosition = pastPositions[^1];
     }
-    private void CheckLegalPositions()
+    public void CheckLegalPositions()
     {
         if(dialogueManager.dialogueFinished == false)
         {
@@ -117,27 +117,31 @@ public class playerController : MonoBehaviour
         {
             possiblePositions.Add(playerPosition - Vector2.up);
             
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().TargetingSquare(true);
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
         }
         if(playerPosition.y + 1 <= gridManager.gridHeight - 1) // can we go one up?
         {
             possiblePositions.Add(playerPosition + Vector2.up);
         
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
-            
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count-1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().TargetingSquare(true);
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
+
         }
         if (playerPosition.x + 1 <= gridManager.gridLength - 1) // can we go right?
         {
             possiblePositions.Add(playerPosition + Vector2.right);
 
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().TargetingSquare(true);
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
         }
         if(playerPosition.x - 1 >= 0) //can we go left?
         {
             possiblePositions.Add(playerPosition - Vector2.right);
 
-            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<SpriteRenderer>().color = Color.yellow;
-            
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().TargetingSquare(true);
+            gridManager.grid[(int)possiblePositions[possiblePositions.Count - 1].x, (int)possiblePositions[possiblePositions.Count - 1].y].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
+
         }
     }
 
@@ -150,30 +154,36 @@ public class playerController : MonoBehaviour
 
         for (int i = 0; i < possiblePositions.Count; i++)
         {
-            gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor();
+            gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor(true);
         }
 
         if (moveDirection == MoveDirection.RIGHT)
         {
-            gridManager.grid[(int)playerPosition.x + 1, (int)playerPosition.y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            gridManager.grid[(int)playerPosition.x + 1, (int)playerPosition.y].GetComponent<CellManager>().TargetingSquare(true);
+
+            gridManager.grid[(int)playerPosition.x + 1, (int)playerPosition.y].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
             targetPosition = playerPosition;
             targetPosition += Vector2.right;
         }
         if((moveDirection == MoveDirection.LEFT))
         {
-            gridManager.grid[(int)playerPosition.x - 1, (int)playerPosition.y].GetComponent<SpriteRenderer>().color = Color.yellow;
+            gridManager.grid[(int)playerPosition.x - 1, (int)playerPosition.y].GetComponent<CellManager>().TargetingSquare(true);
+
+            gridManager.grid[(int)playerPosition.x - 1, (int)playerPosition.y].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
             targetPosition = playerPosition;
             targetPosition -= Vector2.right;
         }
         if (moveDirection == MoveDirection.UP)
         {
-            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y + 1].GetComponent<SpriteRenderer>().color = Color.yellow;
+            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y + 1].GetComponent<CellManager>().TargetingSquare(true);
+            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y + 1].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
             targetPosition = playerPosition;
             targetPosition += Vector2.up;
         }
         if (moveDirection == MoveDirection.DOWN)
         {
-            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y - 1].GetComponent<SpriteRenderer>().color = Color.yellow;
+            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y - 1].GetComponent<CellManager>().TargetingSquare(true);
+            gridManager.grid[(int)playerPosition.x, (int)playerPosition.y - 1].GetComponent<CellManager>().activeCircle.GetComponent<SpriteRenderer>().color = Color.green;
             targetPosition = playerPosition;
             targetPosition += Vector2.down;
         }
@@ -217,7 +227,7 @@ public class playerController : MonoBehaviour
         {
             currentCell = gridManager.grid[(int)possiblePositions[i].x,(int)possiblePositions[i].y];
             //currentCell.GetComponent<CellManager>().ResetColor();
-            gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor();
+            gridManager.grid[(int)possiblePositions[i].x, (int)possiblePositions[i].y].GetComponent<CellManager>().ResetColor(true);
         }
         possiblePositions.Clear();
         

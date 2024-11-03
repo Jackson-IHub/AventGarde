@@ -23,11 +23,30 @@ public class CellManager : MonoBehaviour
 
     private bool collectiblePickedUp = false;
 
+    public GameObject targetCircle;
+
+    public GameObject activeCircle;
+    public GameObject enemyCircle;
+
     private void Awake()
     {
+        gridManager = FindFirstObjectByType<GridManager>();
         GameObject collectibleObject = new GameObject();
         spriteRenderer = GetComponent<SpriteRenderer>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
+    }
+
+    private void Start()
+    {
+        activeCircle = Instantiate(targetCircle, this.transform, true);
+
+        activeCircle.transform.localPosition = Vector3.zero;
+        activeCircle.SetActive(false);
+
+        enemyCircle = Instantiate(targetCircle, this.transform, true);
+
+        enemyCircle.transform.localPosition = Vector3.zero;
+        enemyCircle.SetActive(false);
     }
 
     // called when an entity enters the grid square
@@ -46,6 +65,7 @@ public class CellManager : MonoBehaviour
     {
         if(this.gameObject.GetComponentInChildren<playerController>() && this.GetComponentInChildren<EnemyController>())
         {
+            Debug.Log("lost");
             gridManager.YouLose();
         }
         if(this.gameObject.GetComponentInChildren<playerController>() && this.gameObject.GetComponentInChildren<CollectibleObject>())
@@ -59,9 +79,30 @@ public class CellManager : MonoBehaviour
 
     
 
-    public void ResetColor()
+    public void ResetColor(bool isPlayer)
     {
-        spriteRenderer.color = startingColor;
+        if (isPlayer)
+        {
+            activeCircle.SetActive(false);
+        }
+        else
+        {
+            enemyCircle.SetActive(false);
+        }
+    }
+
+    public void TargetingSquare(bool isPlayer)
+    {
+        if (isPlayer)
+        {
+            activeCircle.SetActive(true);
+        }
+        else
+        {
+            enemyCircle.SetActive(true);
+        }
+
+        
     }
 
     public void ResetStatus()
