@@ -112,9 +112,9 @@ public class GridManager : MonoBehaviour
 
     private void OnCycleStart()
     {
-        if (playerController.targetPosition != new Vector2(-1, -1))
+        if (playerController.targetPosition != new Vector2(-1, -1) || !playerController.GetComponent<DialogueManager>().dialogueFinished)
         {
-            PlayerAction();
+            PlayerAction(); 
             StartCoroutine(EnemyActions());
         }        
     }

@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using System.Collections;
 public class DialogueManager : MonoBehaviour
 {
+    public bool dialogueFinished = false;
     public TextAsset textFile;
 
     public TextMeshPro rexTextMesh;
@@ -96,6 +97,7 @@ public class DialogueManager : MonoBehaviour
     {
         rexTextMesh.text = "";
         dialogue.Clear();
+        dialogueFinished = true;
     }
 
     public void AdvanceDialogue() // call when a player presses a button in Dialogue Trigger
