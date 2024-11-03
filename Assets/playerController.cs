@@ -143,10 +143,10 @@ public class playerController : MonoBehaviour
 
     private void PlaceMove()
     {
-        if (dialogueManager.dialogueFinished == false)
-        {
-            return;
-        }
+        // if (dialogueManager.dialogueFinished == false)
+        // {
+        //     return;
+        // }
 
         for (int i = 0; i < possiblePositions.Count; i++)
         {
