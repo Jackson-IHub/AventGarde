@@ -1,5 +1,0 @@
-Stacy: You can move around using the WASD keys on your keyboard to select a spot, and then press space to move there.
-
-Stacy: After you make a move, an enemy will make theirs. They will always move to the red square, and will only damage you, not each other.
-
-Stacy: You’ll need to collect the scattered parts of the time dilation portal to progress. There should be one in each area.
