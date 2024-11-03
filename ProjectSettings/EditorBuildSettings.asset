@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 451f2b648b38ac544accb140c5a63dff
+  - enabled: 1
+    path: Assets/Scenes/introCutscene.unity
+    guid: d7ac2e142d256b248822dc8250bc4d27
+  - enabled: 1
     path: Assets/Scenes/FallScene.unity
     guid: e193dd7586c418943a41e4d97e9ee655
   - enabled: 1
@@ -27,8 +33,11 @@ EditorBuildSettings:
     path: Assets/Scenes/AmalgamationScene.unity
     guid: 5541b738e795cb947980c0d0ab4fe51a
   - enabled: 1
-    path: Assets/Scenes/introCutscene.unity
-    guid: d7ac2e142d256b248822dc8250bc4d27
+    path: Assets/Scenes/EndingScene.unity
+    guid: 79ba58d81afc953478a209ae8bc53b26
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 8e2d4c1653cf0254ca3e07af23b84dfb
   - enabled: 1
     path: Assets/Scenes/EndingScene.unity
     guid: 79ba58d81afc953478a209ae8bc53b26

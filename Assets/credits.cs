@@ -22,7 +22,8 @@ public class credits : MonoBehaviour
     {
         //credit.transform.position = Vector2.down*Time.deltaTime
 
-        if (credit.transform.position.y >= 17){
+        if (credit.transform.position.y >= 25.8)
+        {
             Application.Quit();
         }
 
