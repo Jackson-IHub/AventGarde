@@ -314,12 +314,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2345935916603479857, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5407639952986175389, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 5007465203087833557, guid: 562f021960716d44daab13e188b9b668, type: 3}
+    - target: {fileID: 7487002657625459401, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487002657625459401, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7509122853393073219, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
       propertyPath: m_Name
       value: Stacy
@@ -370,7 +378,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7487002657625459401, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1048571536}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8627044352376107169, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
 --- !u!4 &130265229 stripped
 Transform:
@@ -1983,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c1aafadbb8c9d4b8af0ee2d6ba61a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNumber: 3
+  sceneNumber: 5
   gridLength: 4
   gridHeight: 5
   possiblePositions:
@@ -2612,11 +2623,11 @@ PrefabInstance:
       objectReference: {fileID: -476046631664651843, guid: 429e30eea420e8849b2a8aa2dec30fbe, type: 2}
     - target: {fileID: 7469228361259588926, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9487784
+      value: -8.47
       objectReference: {fileID: 0}
     - target: {fileID: 7469228361259588926, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5175891
+      value: -4.56
       objectReference: {fileID: 0}
     - target: {fileID: 7469228361259588926, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2653,7 +2664,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8644168554002229078, guid: 4798afa5749229646967509308f42209, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 4798afa5749229646967509308f42209, type: 3}
 --- !u!1 &1275781220 stripped
 GameObject:

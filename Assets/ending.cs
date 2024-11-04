@@ -12,7 +12,7 @@ public class ending : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space)){
-            SceneManager.LoadScene(9);
+            SceneManager.LoadScene(10);
         }
     }
 }

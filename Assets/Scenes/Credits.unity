@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credit: {fileID: 470994983}
-  speed: -1
+  speed: -0.5
 --- !u!4 &637993978
 Transform:
   m_ObjectHideFlags: 0

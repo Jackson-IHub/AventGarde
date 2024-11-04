@@ -1765,7 +1765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2360267633505747142, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2527347114240310111, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_text
@@ -1835,13 +1835,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6535611817435392325, guid: 4798afa5749229646967509308f42209, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -476046631664651843, guid: 429e30eea420e8849b2a8aa2dec30fbe, type: 2}
     - target: {fileID: 7469228361259588926, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5117846
+      value: -8.46
       objectReference: {fileID: 0}
     - target: {fileID: 7469228361259588926, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.781281
+      value: -4.62
       objectReference: {fileID: 0}
     - target: {fileID: 7469228361259588926, guid: 4798afa5749229646967509308f42209, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1878,7 +1882,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8644168554002229078, guid: 4798afa5749229646967509308f42209, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 4798afa5749229646967509308f42209, type: 3}
 --- !u!1 &620971653 stripped
 GameObject:

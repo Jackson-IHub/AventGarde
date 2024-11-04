@@ -21,7 +21,7 @@ public class ProgressScene : MonoBehaviour
         {
             NextScene();
         }
-        if(Input.GetKeyUp(KeyCode.LeftShift))
+        if(Input.GetKeyUp(KeyCode.B))
         {
             ChangeBackground();
         }
@@ -38,9 +38,10 @@ public class ProgressScene : MonoBehaviour
 
     public void ChangeBackground()
     {
-        backgroundNumber++;
+        
         background.sprite = backgrounds[backgroundNumber];
-        if(backgroundNumber == 7)
+        backgroundNumber++;
+        if (backgroundNumber == 7)
         {
             backgroundNumber = 0;
         }
