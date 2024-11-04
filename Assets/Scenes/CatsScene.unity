@@ -1449,8 +1449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFinished: 0
-  textFileStart: {fileID: 4900000, guid: d3833a4e576f50a42bf14210708e2a61, type: 3}
-  textFileEnd: {fileID: 4900000, guid: eedb7311d1ae48140a677c9712a80abe, type: 3}
+  textFileStart: {fileID: 4900000, guid: cda975649fa88c34cb7fe045e3124e5a, type: 3}
+  textFileEnd: {fileID: 4900000, guid: a066b43fa7e898a47a7cc0d9d2daeb98, type: 3}
   rexTextMesh: {fileID: 1670416562}
   stacyTextMesh: {fileID: 1971257275}
   rexTextBubble: {fileID: 1670416561}
@@ -2213,10 +2213,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8644168554002229078, guid: 4798afa5749229646967509308f42209, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4798afa5749229646967509308f42209, type: 3}
 --- !u!1 &1670416561 stripped
 GameObject:
@@ -2495,10 +2492,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7487002657625459401, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1816423065}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8627044352376107169, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d45cf05fd104192459ffee46a09eeb59, type: 3}
 --- !u!4 &1857527087 stripped
 Transform:

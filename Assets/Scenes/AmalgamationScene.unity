@@ -3871,8 +3871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFinished: 0
-  textFileStart: {fileID: 4900000, guid: 47b0bb772c17dfd4b953fe4486106593, type: 3}
-  textFileEnd: {fileID: 4900000, guid: 02c07c1edfc32b54390c2d1c5506a016, type: 3}
+  textFileStart: {fileID: 4900000, guid: d91314f8f3b4d1949a0803502546971c, type: 3}
+  textFileEnd: {fileID: 4900000, guid: 9417e77e0f0590a4089e9f7aabb1cd2e, type: 3}
   rexTextMesh: {fileID: 1945450042}
   stacyTextMesh: {fileID: 1714896992}
   rexTextBubble: {fileID: 1945450041}
